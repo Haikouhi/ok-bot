@@ -8,15 +8,15 @@ class Query(): # gère toutes les req
     def __init__(self): # initialisation où l'on se connecte à notre db
 
         self.connexion = pymysql.connect(host='localhost',
-                                    user='foobar',
-                                    password='foobar',
+                                    user='', # add user
+                                    password='', # add password
                                     db='chit_chat',
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor
                                     )
         self.curseur = self.connexion.cursor()
 
-    def firstname_list(self): # renvoie al liste des prenoms dans la db
+    def firstname_list(self): # renvoie la liste des prenoms dans la db
 
         list = [] # init de la liste que l'on va return
 
@@ -24,7 +24,7 @@ class Query(): # gère toutes les req
         self.curseur.execute(sql) # on l'execute...
         data = self.curseur.fetchall() # on stock le resultat...
         for person in data: # on parcourt...
-            list.append(person["firstname"]) # on ajoute al réponse dans la liste
+            list.append(person["firstname"]) # on ajoute la réponse dans la liste
 
         return list
 
@@ -32,7 +32,7 @@ class Query(): # gère toutes les req
     def name(self, firstname):  # pour recup' le nom
 
 
-        if firstname != "": # on s'assure que firstname n'est nul
+        if firstname != "": # on s'assure que firstname n'est pas nul
             sql = "SELECT lastname, gender FROM class WHERE firstname = '{}'".format(firstname) # req sql avec prenom en param...
             self.curseur.execute(sql) # on execute...
             output = self.curseur.fetchone() # on recup le output...
