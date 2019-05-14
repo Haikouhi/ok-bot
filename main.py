@@ -10,7 +10,7 @@ nltk.download('words')
 
 # Creates an instance of a speech config with specified subscription key and service region.
 # Replace with your own subscription key and service region (e.g., "westus").
-speech_key, service_region = "84c1b69e808c4ab9abbef18f1902f17d", "francecentral"
+speech_key, service_region = "subscription_key", "francecentral"
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region, speech_recognition_language="fr-FR")
 
 # Creates a recognizer with the given settings
