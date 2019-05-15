@@ -86,8 +86,8 @@ For further info click [here :](https://docs.microsoft.com/en-us/azure/cognitive
 
 To do :
 - change DB name from chitchat to ok-bot
-- fix horoscope scrapping or api 
 - add weather 
-- add to vm
-- change lang to french(france)
-
+- add to vm and find a way to leave it on 
+- change lang to french(france) de la voix
+- train with names 
+- activate/deactivate bot
