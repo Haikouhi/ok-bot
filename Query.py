@@ -204,3 +204,6 @@ class Query(): # gère toutes les req
 
         person_sign = self.zodiac_sign(firstname)
         return horoscope[person_sign]
+
+
+    # class active for weather ? api openweathermap
