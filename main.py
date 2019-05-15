@@ -1,12 +1,18 @@
+# coding: utf8
+
 import azure.cognitiveservices.speech as speechsdk
+import argparse
 
 from Query import *
 from text_to_speech import *
 from constantes import *
 
-from random import randint
 import nltk # librairie qui permet de couper les phrases avec des tokens
-import difflib
+
+parser = argparse.ArgumentParser()
+parser.add_argument("speech_key")
+args = parser.parse_args()
+speech_key = args.speech_key
 
 nltk.download('punkt')
 nltk.download('maxent_ne_chunker')
@@ -14,13 +20,15 @@ nltk.download('words')
 
 # Creates an instance of a speech config with specified subscription key and service region.
 # Replace with your own subscription key and service region (e.g., "westus").
-speech_key, service_region = "subscription_key", "francecentral"
+service_region = "francecentral"
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region, speech_recognition_language="fr-FR")
 
 # Creates a recognizer with the given settings
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
-while 1:
+continuer = True
+
+while continuer:
 
     print("Dit quelquechose...")
 
@@ -36,6 +44,7 @@ while 1:
         list_query = []  # initialisation de la liste des requêtes que l'on va effectuer
         firstname = ""  # init vide pour les demandes de prenoms non connu par la db
         answer = ""  # init le message que le bot va envoyer
+
 
         tokens = nltk.word_tokenize(result.text)  # permet de recupérer la réponse en tokens (mot par mot)
 
@@ -75,18 +84,19 @@ while 1:
                 answer += "Son signe est " + query.zodiac_sign(firstname) + '\n'
             elif elt == "bye":
                 answer += "See you soon loser!"
+                continuer = False
             elif elt == "salut":
                 answer += "Bonjour ! Je suis Chit-Chat (: "
             elif elt == "ça_va":
                 answer += "Je pète la forme"
+
 
         if len(list_query) == 0:  # si liste des Query = 0...
 
             answer += "Je n'ai pas compris ce que vous vouliez"
 
         print(answer)
-        subscription_key = speech_key
-        app = TextToSpeech(subscription_key, answer)
+        app = TextToSpeech(speech_key, answer)
         app.get_token()
         app.save_audio()
 

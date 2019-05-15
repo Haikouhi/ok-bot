@@ -8,8 +8,8 @@ class Query(): # gère toutes les req
     def __init__(self): # initialisation où l'on se connecte à notre db
 
         self.connexion = pymysql.connect(host='localhost',
-                                    user='', # add user
-                                    password='', # add password
+                                    user='foobar',
+                                    password='foobar', # add password
                                     db='chit_chat',
                                     charset='utf8mb4',
                                     cursorclass=pymysql.cursors.DictCursor
@@ -205,3 +205,13 @@ class Query(): # gère toutes les req
         person_sign = self.zodiac_sign(firstname)
         return horoscope[person_sign]
 
+    def meteo(self):
+
+        s = requests.Session()
+
+        URL = "http://api.openweathermap.org/data/2.5/forecast/daily?" \
+              "lat=45.76&lon=4.84&cnt=14&mode=json&units=metric&lang=fr"
+
+        requete = s.get(url=URL)
+        data = requete.json()
+        print(data)

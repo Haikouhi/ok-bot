@@ -47,6 +47,7 @@ class TextToSpeech(object):
                 audio.write(response.content)
                 print("\nStatus code: " + str(response.status_code) + "\nYour TTS is ready for playback.\n")
                 playsound('sample-' + self.timestr + '.wav')
+            os.remove('sample-' + self.timestr + '.wav')
         else:
             print("\nStatus code: " + str(
                 response.status_code) + "\nSomething went wrong. Check your subscription key and headers.\n")

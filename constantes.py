@@ -10,6 +10,6 @@ word_dict = {
     "horoscope": ["horoscope", "l'horoscope"],
     "nom": ["nom"],
     "telephone": ["telephone", "numero"],
-    "bye": ["bye", "revoir"]
+    "bye": ["bye", "revoir", "bye."]
 }
 
