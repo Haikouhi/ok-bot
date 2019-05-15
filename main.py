@@ -33,36 +33,48 @@ def make_queries(list_query, firstname):
 
     answer = ""
 
-    for elt in list_query:
-        if elt == "nom":
-            answer += query.name(firstname) + '\n'
-        elif elt == "date":
-            answer += query.date(firstname) + '\n'
-        elif elt == "anniversaire":
-            answer += query.anniversaire(firstname) + '\n'
-        elif elt == "horoscope":
-            answer += query.horoscope(firstname) + '\n'
-        elif elt == "adresse":
-            answer += query.city(firstname) + '\n'
-        elif elt == "numero":
-            answer += query.number(firstname) + '\n'
-        elif elt == "age":
-            answer += query.age(firstname) + '\n'
-        elif elt == "mail":
-            answer += query.mail(firstname) + '\n'
-        elif elt == "signe":
-            answer += "Son signe est " + query.zodiac_sign(firstname) + '\n'
-        elif elt == "bye":
-            answer += "See you soon loser!"
-        elif elt == "salut":
-            answer += "Bonjour ! Je suis Alfred "
-        elif elt == "ça_va":
-            answer += "Je pète la forme"
+    if len(list_query) == 0:  # si liste des Query = 0...
+
+        answer += "Je n'ai pas compris ce que vous vouliez"
+    else:
+
+        for elt in list_query:
+            if elt == "nom":
+                answer += query.name(firstname) + '\n'
+            elif elt == "date":
+                answer += query.date(firstname) + '\n'
+            elif elt == "anniversaire":
+                answer += query.anniversaire(firstname) + '\n'
+            elif elt == "horoscope":
+                answer += query.horoscope(firstname) + '\n'
+            elif elt == "adresse":
+                answer += query.city(firstname) + '\n'
+            elif elt == "numero":
+                answer += query.number(firstname) + '\n'
+            elif elt == "age":
+                answer += query.age(firstname) + '\n'
+            elif elt == "mail":
+                answer += query.mail(firstname) + '\n'
+            elif elt == "signe":
+                answer += "Son signe est " + query.zodiac_sign(firstname) + '\n'
+            elif elt == "bye":
+                answer += "See you soon loser!"
+            elif elt == "salut":
+                answer += "Bonjour ! Je suis Alfred "
+            elif elt == "ça_va":
+                answer += "Je pète la forme"
 
     return answer
 
-
-
+def stop(list_query):
+    if len(list_query) > 0:
+        for elt in list_query:
+            if elt == "bye":
+                return False
+            else:
+                return True
+    else:
+        return True
 
 
 speech_key = get_speech_key()
@@ -109,11 +121,9 @@ while continuer:
 
         list_query = set(list_query)
         answer = make_queries(list_query, firstname)
+        continuer = stop(list_query)
 
 
-        if len(list_query) == 0:  # si liste des Query = 0...
-
-            answer += "Je n'ai pas compris ce que vous vouliez"
 
         print(answer)
         app = TextToSpeech(speech_key, answer)
