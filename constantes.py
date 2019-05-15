@@ -13,3 +13,6 @@ word_dict = {
     "bye": ["bye", "revoir", "bye."]
 }
 
+service_region = "francecentral"
+
+

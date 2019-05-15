@@ -33,11 +33,11 @@ class TextToSpeech(object):
             'X-Microsoft-OutputFormat': 'riff-24khz-16bit-mono-pcm',
             'User-Agent': 'YOUR_RESOURCE_NAME'
         }
-        xml_body = ElementTree.Element('speak', version='1.0')
+        xml_body = ElementTree.Element('speak', version='1.0', type='cheerful')
         xml_body.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-us')
         voice = ElementTree.SubElement(xml_body, 'voice')
         voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-US')
-        voice.set('name', 'Microsoft Server Speech Text to Speech Voice (fr-CA, Caroline)')
+        voice.set('name', 'Microsoft Server Speech Text to Speech Voice (fr-FR, HortenseRUS)')
         voice.text = self.tts
         body = ElementTree.tostring(xml_body)
 
@@ -51,5 +51,11 @@ class TextToSpeech(object):
         else:
             print("\nStatus code: " + str(
                 response.status_code) + "\nSomething went wrong. Check your subscription key and headers.\n")
+
+    def liste_voices(self):
+
+        s = requests.Session()
+
+        url = ""
 
 
