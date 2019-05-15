@@ -207,11 +207,17 @@ class Query(): # gère toutes les req
 
     def meteo(self):
 
+        with open("key2.txt", "r") as file:
+            weather_key = file.readline()
+            weather_key = weather_key[:-1]
+
         s = requests.Session()
 
         URL = "http://api.openweathermap.org/data/2.5/forecast/daily?" \
               "lat=45.76&lon=4.84&cnt=14&mode=json&units=metric&lang=fr"
 
-        requete = s.get(url=URL)
+        params = {"APPID": weather_key}
+
+        requete = s.get(url=URL, params=params)
         data = requete.json()
         print(data)
