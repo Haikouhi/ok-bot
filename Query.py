@@ -57,7 +57,7 @@ class Query(): # gère toutes les req
             if output["gender"] == "M":
                 return "Il est né le " + str(d) + "/" + "0" + str(m) + "/" + str(y)
             else:
-                return "Elle est née le" + str(d) + "/" + "0" + str(m) + "/" + str(y)
+                return "Elle est née le" + str(d) + "/" + "" + str(m) + "/" + str(y)
         else:
             return "Huuum, je ne connais pas cette personne ! "
 
