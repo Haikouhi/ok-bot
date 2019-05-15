@@ -76,6 +76,14 @@ def stop(list_query):
     else:
         return True
 
+def speak_answer(speech_key, answer):
+
+    print(answer)
+    app = TextToSpeech(speech_key, answer)
+    app.get_token()
+    app.save_audio()
+
+
 
 speech_key = get_speech_key()
 
@@ -83,11 +91,7 @@ nltk.download('punkt')
 nltk.download('maxent_ne_chunker')
 nltk.download('words')
 
-# Creates an instance of a speech config with specified subscription key and service region.
-# Replace with your own subscription key and service region (e.g., "westus").
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region, speech_recognition_language="fr-FR")
-
-# Creates a recognizer with the given settings
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
 continuer = True
@@ -104,7 +108,6 @@ while continuer:
 
         firstname_list = query.firstname_list()
 
-
         list_query = []  # initialisation de la liste des requêtes que l'on va effectuer
         firstname = ""  # init vide pour les demandes de prenoms non connu par la db
         answer = ""  # init le message que le bot va envoyer
@@ -120,15 +123,12 @@ while continuer:
             list_query.remove("ça_va")
 
         list_query = set(list_query)
+
         answer = make_queries(list_query, firstname)
+        speak_answer(speech_key, answer)
+
         continuer = stop(list_query)
 
-
-
-        print(answer)
-        app = TextToSpeech(speech_key, answer)
-        app.get_token()
-        app.save_audio()
 
     elif result.reason == speechsdk.ResultReason.NoMatch:
         print("Je n'ai pas entendu")

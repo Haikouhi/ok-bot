@@ -51,10 +51,4 @@ class TextToSpeech(object):
             print("\nStatus code: " + str(
                 response.status_code) + "\nSomething went wrong. Check your subscription key and headers.\n")
 
-    def liste_voices(self):
-
-        s = requests.Session()
-
-        url = ""
-
 
