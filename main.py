@@ -131,7 +131,7 @@ while continuer:
         app.save_audio()
 
     elif result.reason == speechsdk.ResultReason.NoMatch:
-        print("No speech could be recognized: {}".format(result.no_match_details))
+        print("Je n'ai pas entendu")
     elif result.reason == speechsdk.ResultReason.Canceled:
         cancellation_details = result.cancellation_details
         print("Speech Recognition canceled: {}".format(cancellation_details.reason))
