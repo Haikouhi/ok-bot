@@ -6,7 +6,7 @@ from Query import *
 from constantes import *
 from chatbot import *
 
-import nltk # librairie qui permet de couper les phrases avec des tokens
+ # librairie qui permet de couper les phrases avec des tokens
 
 
 speech_key = get_speech_key()
@@ -43,12 +43,12 @@ while continuer:
 
         list_query = set(list_query)
 
-        answer = make_queries(list_query, firstname)
+        answer = make_queries(query, list_query, firstname)
         speak_answer(speech_key, answer)
 
         continuer = stop(list_query)
 
-        list_query = reinitialize_query(list_query)
+        list_query = reinitialize_query(list(list_query))
 
 
     elif result.reason == speechsdk.ResultReason.NoMatch:

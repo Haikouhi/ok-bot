@@ -1,5 +1,6 @@
 import argparse
 from text_to_speech import *
+import nltk
 
 def get_speech_key():
     parser = argparse.ArgumentParser()
@@ -9,6 +10,7 @@ def get_speech_key():
 
 def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):
 
+    list_query = []
     firstname = ""
     tokens = nltk.word_tokenize(speeched_voice.text)
 
@@ -21,7 +23,7 @@ def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):
 
     return list_query, firstname
 
-def make_queries(list_query, firstname):
+def make_queries(query, list_query, firstname):
 
     answer = ""
 
