@@ -1,5 +1,9 @@
 import unittest
-from chatbot import *
+import chatbot
 
-class Test_get_speech_key(unittest.TestCase):
+class Test_get_query_and_firstnames(unittest.TestCase):
+
+    def test_base(self):
+        self.assertEqual()
+
 

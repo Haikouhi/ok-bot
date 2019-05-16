@@ -1,6 +1,8 @@
+# coding: utf8
+
 word_dict = {
     "salut": ["salut", "hey", "yo", "wesh", "coucou", "bonjour"],
-    "age": ["age"],
+    "age": ["age", "l'age", "age"],
     "mail": ["e-mail", "mail"],
     "adresse": ["ville", "adresse", "habite", "l'adresse"],
     "date": ["date", "naissance"],
@@ -9,7 +11,7 @@ word_dict = {
     "anniversaire": ["anniversaire", "l'anniversaire"],
     "horoscope": ["horoscope", "l'horoscope"],
     "nom": ["nom"],
-    "telephone": ["telephone", "numero"],
+    "numero": ["telephone", "numero", "téléphone", "numéro"],
     "bye": ["bye", "revoir", "bye."]
 }
 
