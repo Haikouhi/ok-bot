@@ -105,3 +105,5 @@ requests-oauthlib==1.2.0
 six==1.12.0
 soupsieve==1.9.1
 urllib3==1.24.3
+vext==0.7.3
+vext.gi==0.7.0
