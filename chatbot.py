@@ -2,11 +2,16 @@ import argparse
 from text_to_speech import *
 import nltk
 
-def get_speech_key():
+def write_speech_key():
     parser = argparse.ArgumentParser()
     parser.add_argument("speech_key")
     args = parser.parse_args()
-    return args.speech_key
+    with open("azure_key.txt", "w+") as file:
+        file.write(args.speech_key)
+
+def get_speech_key():
+    with open("azure_key.txt", "r") as file:
+        return file.readline()
 
 def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):
 
@@ -57,6 +62,8 @@ def make_queries(query, list_query, firstname):
                 answer += "Bonjour ! Je suis Alfred "
             elif elt == "ça_va":
                 answer += "Je pète la forme"
+            elif elt == "meteo":
+                answer += query.meteo()
 
     return answer
 

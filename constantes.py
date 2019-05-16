@@ -12,7 +12,8 @@ word_dict = {
     "horoscope": ["horoscope", "l'horoscope"],
     "nom": ["nom"],
     "numero": ["telephone", "numero", "téléphone", "numéro"],
-    "bye": ["bye", "revoir", "bye."]
+    "bye": ["bye", "revoir", "bye."],
+    "meteo": ["météo", "meteo", "temps"]
 }
 
 service_region = "francecentral"

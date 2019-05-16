@@ -1,8 +1,18 @@
+import azure.cognitiveservices.speech as speechsdk
 import pymysql # language sql
 import datetime # gestion des dates
 from bs4 import BeautifulSoup
 import requests
 import json
+import nltk
+from text_to_speech import *
+from chatbot import *
+from constantes import *
+
+speech_key = get_speech_key()
+
+speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region, speech_recognition_language="fr-FR")
+speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
 class Query(): # gère toutes les req
 
@@ -208,41 +218,68 @@ class Query(): # gère toutes les req
 
     def meteo(self):
 
-        with open("key2.txt", "r") as file:
-            weather_key = file.readline()
-            weather_key = weather_key[:-1]
+        with open("key.txt", "r") as file:
+            api_key = file.readline()
 
-        s = requests.Session()
+        speak_answer(speech_key, "Enter city name : ")
 
-        URL = "http://api.openweathermap.org/data/2.5/forecast/daily?" \
-              "lat=45.76&lon=4.84&cnt=14&mode=json&units=metric&lang=fr"
 
-        params = {"APPID": "13363f6cdd12c6fabfc615bab458ee42"}
+        # base_url variable to store url 
+        base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-        requete = s.get(url=URL, params=params)
-        data = requete.json()
-        print(data)
+        # Give city name 
+        city_name = ""
+        result = speech_recognizer.recognize_once()
 
-        city_name = input("Enter city name : ") 
+        if result.reason == speechsdk.ResultReason.RecognizedSpeech:
+            city_name = result.text
+            city_name = city_name[:-1]
 
-        complete_url = base_url + "appid=" + api_key + "&q=" + city_name 
+        # complete_url variable to store 
+        # complete url address 
+        complete_url = base_url + "appid=" + api_key + "&q=" + city_name.capitalize() 
 
+        # get method of requests module 
+        # return response object 
         response = requests.get(complete_url) 
 
+        # json method of response object 
+        # convert json format data into 
+        # python format data 
         x = response.json() 
 
+        # Now x contains list of nested dictionaries 
+        # Check the value of "cod" key is equal to 
+        # "404", means city is found otherwise, 
+        # city is not found 
         if x["cod"] != "404": 
 
+            # store the value of "main" 
+            # key in variable y 
             y = x["main"] 
 
+            # store the value corresponding 
+            # to the "temp" key of y 
             current_temperature = y["temp"] 
+
+            # store the value corresponding 
+            # to the "pressure" key of y 
             current_pressure = y["pressure"] 
+
+            # store the value corresponding 
+            # to the "humidity" key of y 
             current_humidiy = y["humidity"] 
+
+            # store the value of "weather" 
+            # key in variable z 
             z = x["weather"] 
 
+            # store the value corresponding 
+            # to the "description" key at 
+            # the 0th index of z 
             weather_description = z[0]["description"] 
 
-            print(" Temperature (in kelvin unit) = " +
+            return(" Temperature (in kelvin unit) = " +
                             str(current_temperature) +
                 "\n atmospheric pressure (in hPa unit) = " +
                             str(current_pressure) +
@@ -251,4 +288,4 @@ class Query(): # gère toutes les req
                 "\n description = " +
                             str(weather_description)) 
         else: 
-            print(" City Not Found ") 
+            return(" City Not Found ") 
