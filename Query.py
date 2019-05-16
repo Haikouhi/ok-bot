@@ -2,6 +2,7 @@ import pymysql # language sql
 import datetime # gestion des dates
 from bs4 import BeautifulSoup
 import requests
+import json
 
 class Query(): # gère toutes les req
 
@@ -216,8 +217,38 @@ class Query(): # gère toutes les req
         URL = "http://api.openweathermap.org/data/2.5/forecast/daily?" \
               "lat=45.76&lon=4.84&cnt=14&mode=json&units=metric&lang=fr"
 
-        params = {"APPID": ""}
+        params = {"APPID": "13363f6cdd12c6fabfc615bab458ee42"}
 
         requete = s.get(url=URL, params=params)
         data = requete.json()
         print(data)
+
+        city_name = input("Enter city name : ") 
+
+        complete_url = base_url + "appid=" + api_key + "&q=" + city_name 
+
+        response = requests.get(complete_url) 
+
+        x = response.json() 
+
+        if x["cod"] != "404": 
+
+            y = x["main"] 
+
+            current_temperature = y["temp"] 
+            current_pressure = y["pressure"] 
+            current_humidiy = y["humidity"] 
+            z = x["weather"] 
+
+            weather_description = z[0]["description"] 
+
+            print(" Temperature (in kelvin unit) = " +
+                            str(current_temperature) +
+                "\n atmospheric pressure (in hPa unit) = " +
+                            str(current_pressure) +
+                "\n humidity (in percentage) = " +
+                            str(current_humidiy) +
+                "\n description = " +
+                            str(weather_description)) 
+        else: 
+            print(" City Not Found ") 

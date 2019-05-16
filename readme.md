@@ -72,8 +72,25 @@ For further info click [here :](https://docs.microsoft.com/en-us/azure/cognitive
 - from the command line (or terminal session), navigate to the project directory and run the main.py file
 
 
+### Using OpenWeatherAPI - a Python program to find current weather details of any city using openweathermap api 
 
+- import required modules 
+- enter API key  
+- base_url variable to store url 
+- give city name 
+- complete_url variable to store 
+- complete url address 
+- get method of requests module 
+- return response object 
+- json method of response object 
+- convert json format data into 
+- python format data 
+- now x contains list of nested dictionaries 
+- check the value of "cod" key is equal to 
+- "404", means city is found otherwise, 
+- city is not found 
 
+For further details, click [here](https://www.geeksforgeeks.org/python-find-current-weather-of-any-city-using-openweathermap-api/)
 
 
 
