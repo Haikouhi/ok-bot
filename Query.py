@@ -216,7 +216,7 @@ class Query(): # gère toutes les req
         URL = "http://api.openweathermap.org/data/2.5/forecast/daily?" \
               "lat=45.76&lon=4.84&cnt=14&mode=json&units=metric&lang=fr"
 
-        params = {"APPID": weather_key}
+        params = {"APPID": ""}
 
         requete = s.get(url=URL, params=params)
         data = requete.json()
