@@ -65,6 +65,7 @@ class Test_query_class(unittest.TestCase):
         self.assertEqual(self.query.anniversaire(''), 'Huuum, je ne connais pas cette personne ! ')
         self.assertRaises(TypeError, self.query.anniversaire, 'Alice')
 
+
 if __name__ == '__main__':
 
     unittest.main()
