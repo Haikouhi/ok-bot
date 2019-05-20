@@ -108,7 +108,7 @@ For further details, click [here](https://www.geeksforgeeks.org/python-find-curr
 ## Creating shell scripts :
 - create a folder to hold all .sh files
 ### The virtual environment :
-- in the folder add file by writing the command *emacs script_name.sh*
+- in the folder add file by writing the command *emacs script_name.sh* (you can use any Text Editor) 
 - once inside the file write *#!bin/bash*
 - add the necessary components
 - save file
@@ -119,3 +119,11 @@ For further details, click [here](https://www.geeksforgeeks.org/python-find-curr
 - *bash -x script_name.sh* 
 - in order for the script to execute properly we need to move it in a particular file *sudo mv script_name.sh /usr/local/bin*
 - to test, type in *script_name.sh*
+### The Dependencies :
+- install pip
+- install git 
+- git clone
+- create virtual env.
+- activate virtual env.
+- install requirements 
+
