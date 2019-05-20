@@ -18,4 +18,6 @@ word_dict = {
 
 service_region = "francecentral"
 
+path_file = "azure_key.txt"
+
 
