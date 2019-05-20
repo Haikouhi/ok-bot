@@ -6,7 +6,7 @@ from QueryClass import *
 from constantes import *
 from chatbot import *
 
- # librairie qui permet de couper les phrases avec des tokens
+# librairie qui permet de couper les phrases avec des tokens
 
 write_speech_key()
 speech_key = get_speech_key()
@@ -60,3 +60,7 @@ while continuer:
         print("Speech Recognition canceled: {}".format(cancellation_details.reason))
         if cancellation_details.reason == speechsdk.CancellationReason.Error:
             print("Error details: {}".format(cancellation_details.error_details))
+
+
+os.remove("azure_key.txt")
+
