@@ -2,7 +2,7 @@
 
 import unittest
 import chatbot
-from Query import *
+from QueryClass import *
 
 class Test_make_queries(unittest.TestCase):
 
@@ -22,6 +22,27 @@ class Test_make_queries(unittest.TestCase):
     def test_empty_query(self):
         self.assertEqual(chatbot.make_queries(self.query, [], "Caroline"),
                          "Je n'ai pas compris ce que vous vouliez")
+
+
+class Test_stop(unittest.TestCase):
+
+    def test_false(self):
+        self.assertEqual(chatbot.stop(['bye']), False)
+
+    def test_True(self):
+        self.assertEqual(chatbot.stop([]), True)
+        self.assertEqual(chatbot.stop(['age', 'adresse']), True)
+
+
+class Test_reinitialize_query(unittest.TestCase):
+
+    def test_reinitialization(self):
+        self.assertEqual(chatbot.reinitialize_query(['age', 'adresse']), [])
+
+    def test_type(self):
+        self.assertRaises(TypeError, chatbot.reinitialize_query, 1)
+        self.assertRaises(TypeError, chatbot.reinitialize_query, "abc")
+
 
 if __name__ == "__main__":
      unittest.main()

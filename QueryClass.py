@@ -1,3 +1,5 @@
+# coding: utf8
+
 import azure.cognitiveservices.speech as speechsdk
 import pymysql # language sql
 import datetime # gestion des dates
@@ -120,9 +122,9 @@ class Query(): # gère toutes les req
                 person_age = now.year - date.year - 1
 
             if output["gender"] == "M":
-                return "Il a {} ans".format(person_age)
+                return "Il a {} ans".format(str(person_age))
             else:
-                return "Elle a {} ans".format(person_age)
+                return "Elle a {} ans".format(str(person_age))
 
         else:
             return "Huuum, je ne connais pas cette personne !"

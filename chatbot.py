@@ -1,3 +1,5 @@
+# coding: utf8
+
 import argparse
 from text_to_speech import *
 import nltk
@@ -11,8 +13,9 @@ def write_speech_key():
         file.write(args.speech_key)
 
 def get_speech_key(path_file):
-    with open(path_file, "r") as file:
-        return file.readline()
+    if os.path.exists(path_file):
+        with open(path_file, "r") as file:
+            return file.readline()
 
 def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):
 
@@ -60,9 +63,9 @@ def make_queries(query, list_query, firstname):
             elif elt == "bye":
                 answer += "See you soon loser!"
             elif elt == "salut":
-                answer += "Bonjour ! Je suis Alfred "
+                answer += "Bonjour ! Je suis Alfred" + '\n'
             elif elt == "ça_va":
-                answer += "Je pète la forme"
+                answer += "Je pète la forme" + '\n'
             elif elt == "meteo":
                 answer += query.meteo()
 
