@@ -17,6 +17,7 @@ pip install virtualenv
 virtualenv -p python3 venv
 cd venv
 source bin/activate
+cd ..
 
 # install requirements
 pip3 install -r "requirements.txt"
