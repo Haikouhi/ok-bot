@@ -233,9 +233,9 @@ class Query(): # gère toutes les req
     def meteo(self):
 
         with open("key.txt", "r") as file:
-            api_key = file.readline()
+            api_key = file.readline()[:-1]
 
-        speak_answer(speech_key, "Enter city name : ")
+        speak_answer(speech_key, "De quelle ville voulez vous connaitre la météo ?")
 
 
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
@@ -247,7 +247,7 @@ class Query(): # gère toutes les req
             city_name = result.text
             city_name = city_name[:-1]
  
-        complete_url = base_url + "appid=" + api_key + "&q=" + city_name.capitalize() 
+        complete_url = base_url + "appid=" + api_key + "&q=" + city_name.capitalize() + "&lang=fr"
 
         response = requests.get(complete_url) 
 
@@ -265,13 +265,13 @@ class Query(): # gère toutes les req
 
             weather_description = z[0]["description"] 
 
-            return(" Temperature (in kelvin unit) = " +
-                            str(current_temperature) +
-                "\n atmospheric pressure (in hPa unit) = " +
+            return(" Température : " +
+                            str(current_temperature - 273.15) + " °C"
+                "\n Pression atmosphérique (in hPa unit) = " +
                             str(current_pressure) +
-                "\n humidity (in percentage) = " +
+                "\n Pourcentage d'humidité : " +
                             str(current_humidiy) +
-                "\n description = " +
+                "\n Description : " +
                             str(weather_description)) 
         else: 
-            return(" City Not Found ") 
+            return("Je ne connais pas cette ville")
