@@ -1,15 +1,19 @@
 # coding: utf8
 
+from chatbot import *
+
+write_speech_key()
+
 import azure.cognitiveservices.speech as speechsdk
 
 from QueryClass import *
 from constantes import *
-from chatbot import *
+
 
 # librairie qui permet de couper les phrases avec des tokens
 
-write_speech_key()
-speech_key = get_speech_key()
+
+speech_key = get_speech_key(path_file)
 
 nltk.download('punkt')
 nltk.download('maxent_ne_chunker')

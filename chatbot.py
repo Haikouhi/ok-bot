@@ -1,16 +1,17 @@
 import argparse
 from text_to_speech import *
 import nltk
+from constantes import *
 
 def write_speech_key():
     parser = argparse.ArgumentParser()
     parser.add_argument("speech_key")
     args = parser.parse_args()
-    with open("azure_key.txt", "w+") as file:
+    with open(path_file, "w+") as file:
         file.write(args.speech_key)
 
-def get_speech_key():
-    with open("azure_key.txt", "r") as file:
+def get_speech_key(path_file):
+    with open(path_file, "r") as file:
         return file.readline()
 
 def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):

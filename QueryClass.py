@@ -9,7 +9,7 @@ from text_to_speech import *
 from chatbot import *
 from constantes import *
 
-speech_key = get_speech_key()
+speech_key = get_speech_key(path_file)
 
 speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region, speech_recognition_language="fr-FR")
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
