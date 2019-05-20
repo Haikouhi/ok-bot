@@ -94,17 +94,11 @@ For further details, click [here](https://www.geeksforgeeks.org/python-find-curr
 
 
 
+## Continuous Integration with Travis CI :
 
-
-
-
-
-
-
-To do :
-- change DB name from chitchat to ok-bot
-- add weather 
-- add to vm and find a way to leave it on 
-- change lang to french(france) de la voix
-- train with names 
-- activate/deactivate bot
+- Go to Travis-ci.com and Sign up with GitHub 
+- Accept the Authorization of Travis CI and you’ll be redirected to GitHub.
+- Click the green Activate button, and select the repositories you want to use with Travis CI
+- Add a .travis.yml file to your repository to tell Travis CI what to do
+- Add the .travis.yml file to git, commit and push, to trigger a Travis CI build
+- Check the build status page to see if your build passes or fails, according to the return status of the build command by visiting the Travis CI and selecting your repository
