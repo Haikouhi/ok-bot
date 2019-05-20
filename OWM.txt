@@ -1,1 +1,1 @@
-Enter city name :
+De quelle ville voulez vous connaitre la météo ?

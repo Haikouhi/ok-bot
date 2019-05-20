@@ -59,7 +59,7 @@ def make_queries(query, list_query, firstname):
             elif elt == "mail":
                 answer += query.mail(firstname) + '\n'
             elif elt == "signe":
-                answer += "Son signe est " + query.zodiac_sign(firstname) + '\n'
+                answer += query.zodiac_sign(firstname) + '\n'
             elif elt == "bye":
                 answer += "See you soon loser!"
             elif elt == "salut":

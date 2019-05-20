@@ -50,10 +50,20 @@ class Test_query_class(unittest.TestCase):
         self.assertEqual(self.query.mail('Théo'), 'Son adresse email est flaus.theo69@gmail.com')
         self.assertEqual(self.query.mail('Haikouhi'), 'Son adresse email est h.oroudjian@protonmail.com')
         self.assertEqual(self.query.mail(''), 'Huuum, je ne connais pas cette personne !')
-        self.assertRaises(TypeError, self.query.mail, 'Alice')
+        self.assertRaises(TypeError, self.query.mail(''), 'Alice')
 
 
+    def test_zodiac_sign(self):
+        self.assertEqual(self.query.zodiac_sign('Théo'), 'Son signe est Vierge')
+        self.assertEqual(self.query.zodiac_sign('Bachir'), 'Son signe est Cancer')
+        self.assertEqual(self.query.zodiac_sign(''), 'Huuum, je ne connais pas cette personne ! ')
+        self.assertRaises(TypeError, self.query.zodiac_sign, 'Alice')
 
+    def test_anniversaire(self):
+        self.assertEqual(self.query.anniversaire('Théo'), 'Son anniversaire est le 16 Septembre')
+        self.assertEqual(self.query.anniversaire('Timothée'), 'Son anniversaire est le 3 Septembre')
+        self.assertEqual(self.query.anniversaire(''), 'Huuum, je ne connais pas cette personne ! ')
+        self.assertRaises(TypeError, self.query.anniversaire, 'Alice')
 
 
 if __name__ == '__main__':

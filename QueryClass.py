@@ -157,29 +157,29 @@ class Query(): # gère toutes les req
             date = output["birthdate"]
 
             if (date.month == 3 and date.day >= 21) or (date.month == 4 and date.day <= 19):
-                sign = "Belier"
+                sign = "Son signe est Bélier"
             elif (date.month == 4 and date.day >= 20) or (date.month == 5 and date.day <= 20):
-                sign = "Taureau"
+                sign = "Son signe est Taureau"
             elif (date.month == 5 and date.day >= 21) or (date.month == 6 and date.day <= 20):
-                sign = "Gémeaux"
+                sign = "Son signe est Gémeaux"
             elif (date.month == 6 and date.day >= 21) or (date.month == 7 and date.day <= 22):
-                sign = "Cancer"
+                sign = "Son signe est Cancer"
             elif (date.month == 7 and date.day >= 23) or (date.month == 8 and date.day <= 23):
-                sign = "Lion"
+                sign = "Son signe est Lion"
             elif (date.month == 8 and date.day >= 24) or (date.month == 9 and date.day <= 22):
-                sign = "Vierge"
+                sign = "Son signe est Vierge"
             elif (date.month == 9 and date.day >= 23) or (date.month == 10 and date.day <= 22):
-                sign = "Balance"
+                sign = "Son signe est Balance"
             elif (date.month == 10 and date.day >= 23) or (date.month == 11 and date.day <= 21):
-                sign = "Scorpion"
+                sign = "Son signe est Scorpion"
             elif (date.month == 11 and date.day >= 22) or (date.month == 12 and date.day <= 21):
-                sign = "Sagittaire"
+                sign = "Son signe est Sagittaire"
             elif (date.month == 12 and date.day >= 22) or (date.month == 1 and date.day <= 19):
-                sign = "Capricorne"
+                sign = "Son signe est Capricorne"
             elif (date.month == 1 and date.day >= 20) or (date.month == 2 and date.day <= 19):
-                sign = "Verseau"
+                sign = "Son signe est Verseau"
             else:
-                sign = "Poisson"
+                sign = "Son signe est Poisson"
 
             if output["gender"] == "M":
                 return sign
@@ -196,13 +196,13 @@ class Query(): # gère toutes les req
             self.curseur.execute(sql)
             output = self.curseur.fetchone()
             date_courte = output["birthdate"]
-            d = date_courte.day
-            m = date_courte.month
-            y = date_courte.year
+            d = str(date_courte.day)
+            m = anniv_dict[str(date_courte.month)]
+            y = str(date_courte.year)
             if output["gender"] == "M":
-                return "Son anniversaire est le " + str(d) + "/" + "0" + str(m)
+                return "Son anniversaire est le " + d + ' ' + m
             else:
-                return "Son anniversaire est le " + str(d) + "/" + "0" + str(m)
+                return "Son anniversaire est le " + d + ' ' + m
         else:
             return "Huuum, je ne connais pas cette personne ! "
 
@@ -221,15 +221,21 @@ class Query(): # gère toutes les req
         for i in range(len(signe)):
             horoscope[signe[i].string.replace("Horoscope ", "")] = p[i * 2].string + p[i * 2 + 1].string
 
-        person_sign = self.zodiac_sign(firstname)
-        return horoscope[person_sign]
+        person_sign = self.zodiac_sign(firstname).split(' ')[3]
+
+        try:
+            answer = horoscope[person_sign]
+        except:
+            answer = "Huuum, je ne connais pas cette personne ! "
+
+        return answer
 
     def meteo(self):
 
         with open("key.txt", "r") as file:
-            api_key = file.readline()
+            api_key = file.readline()[:-1]
 
-        speak_answer(speech_key, "Enter city name : ")
+        speak_answer(speech_key, "De quelle ville voulez vous connaitre la météo ?")
 
 
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
@@ -241,7 +247,7 @@ class Query(): # gère toutes les req
             city_name = result.text
             city_name = city_name[:-1]
  
-        complete_url = base_url + "appid=" + api_key + "&q=" + city_name.capitalize() 
+        complete_url = base_url + "appid=" + api_key + "&q=" + city_name.capitalize() + "&lang=fr"
 
         response = requests.get(complete_url) 
 
@@ -259,13 +265,13 @@ class Query(): # gère toutes les req
 
             weather_description = z[0]["description"] 
 
-            return(" Temperature (in kelvin unit) = " +
-                            str(current_temperature) +
-                "\n atmospheric pressure (in hPa unit) = " +
+            return(" Température : " +
+                            str(current_temperature - 273.15) + " °C"
+                "\n Pression atmosphérique (in hPa unit) = " +
                             str(current_pressure) +
-                "\n humidity (in percentage) = " +
+                "\n Pourcentage d'humidité : " +
                             str(current_humidiy) +
-                "\n description = " +
+                "\n Description : " +
                             str(weather_description)) 
         else: 
-            return(" City Not Found ") 
+            return("Je ne connais pas cette ville")
