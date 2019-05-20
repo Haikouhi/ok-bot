@@ -102,3 +102,20 @@ For further details, click [here](https://www.geeksforgeeks.org/python-find-curr
 - Add a .travis.yml file to your repository to tell Travis CI what to do
 - Add the .travis.yml file to git, commit and push, to trigger a Travis CI build
 - Check the build status page to see if your build passes or fails, according to the return status of the build command by visiting the Travis CI and selecting your repository
+
+
+
+## Creating shell scripts :
+- create a folder to hold all .sh files
+### The virtual environment :
+- in the folder add file by writing the command *emacs script_name.sh*
+- once inside the file write *#!bin/bash*
+- add the necessary components
+- save file
+- go to the shell script vault (folder we fist created)
+- type *ls -l script_name.sh* to see and change rights to the file 
+- type *chmod +x script_name.sh*
+- to test script, execute it by typing *./script_name.sh*
+- *bash -x script_name.sh* 
+- in order for the script to execute properly we need to move it in a particular file *sudo mv script_name.sh /usr/local/bin*
+- to test, type in *script_name.sh*
