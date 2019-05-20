@@ -1,3 +1,5 @@
+# coding: utf8
+
 import azure.cognitiveservices.speech as speechsdk
 import pymysql # language sql
 import datetime # gestion des dates
@@ -11,7 +13,7 @@ from constantes import *
 
 speech_key = get_speech_key(path_file)
 
-speech_config = speechsdk.SpeechConfig(subscription=speech_key, region=service_region, speech_recognition_language="fr-FR")
+speech_config = speechsdk.SpeechConfig(subscription="e90b0f63074c414fb4a6a0236e7fe892", region=service_region, speech_recognition_language="fr-FR")
 speech_recognizer = speechsdk.SpeechRecognizer(speech_config=speech_config)
 
 class Query(): # gère toutes les req
@@ -66,9 +68,13 @@ class Query(): # gère toutes les req
             m = date_courte.month
             y = date_courte.year
             if output["gender"] == "M":
-                return "Il est né le " + str(d) + "/" + "0" + str(m) + "/" + str(y)
+                if d < 10:
+                    d = '0' + str(d)
+                if m < 10:
+                    m = '0' + str(m)
+                return "Il est né le " + str(d) + "/" + str(m) + "/" + str(y)
             else:
-                return "Elle est née le" + str(d) + "/" + "" + str(m) + "/" + str(y)
+                return "Elle est née le " + str(d) + "/" + "" + str(m) + "/" + str(y)
         else:
             return "Huuum, je ne connais pas cette personne ! "
 
@@ -95,10 +101,12 @@ class Query(): # gère toutes les req
             sql = "SELECT phone_number, gender FROM class WHERE firstname ='{}'".format(firstname)
             self.curseur.execute(sql)
             output = self.curseur.fetchone()
+            num = str(output["phone_number"])
+            num = '0' + num[0:1] + ' ' + num[1:3] + ' ' + num[3:5] + ' ' + num[5:7] + ' ' + num[7:9]
             if output["gender"] == "M":
-                return "Son numéro de téléphone est +33" + str(output["phone_number"])
+                return "Son numéro de téléphone est "+ num
             else:
-                return "Son numéro de téléphone est +33" + str(output["phone_number"])
+                return "Son numéro de téléphone est " + num
 
         else:
             return "Huuum, je ne connais pas cette personne ! "
@@ -120,9 +128,9 @@ class Query(): # gère toutes les req
                 person_age = now.year - date.year - 1
 
             if output["gender"] == "M":
-                return "Il a {} ans".format(person_age)
+                return "Il a {} ans".format(str(person_age))
             else:
-                return "Elle a {} ans".format(person_age)
+                return "Elle a {} ans".format(str(person_age))
 
         else:
             return "Huuum, je ne connais pas cette personne !"

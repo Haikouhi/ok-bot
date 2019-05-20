@@ -1,3 +1,5 @@
+# coding: utf8
+
 import os, requests, time
 from xml.etree import ElementTree
 from playsound import playsound
