@@ -104,9 +104,9 @@ class Query(): # gère toutes les req
             num = str(output["phone_number"])
             num = '0' + num[0:1] + ' ' + num[1:3] + ' ' + num[3:5] + ' ' + num[5:7] + ' ' + num[7:9]
             if output["gender"] == "M":
-                return "Son numéro de téléphone est "+ num
+                return "Son numéro de téléphone est le "+ num
             else:
-                return "Son numéro de téléphone est " + num
+                return "Son numéro de téléphone est le " + num
 
         else:
             return "Huuum, je ne connais pas cette personne ! "
@@ -266,11 +266,11 @@ class Query(): # gère toutes les req
             weather_description = z[0]["description"] 
 
             return(" Température : " +
-                            str(current_temperature - 273.15) + " °C"
-                "\n Pression atmosphérique (in hPa unit) = " +
-                            str(current_pressure) +
-                "\n Pourcentage d'humidité : " +
-                            str(current_humidiy) +
+                            str(current_temperature - 273.15) + " degré"
+                "\n Pression atmosphérique : " +
+                            str(current_pressure) + ' hPa' +
+                "\n Humidité : " +
+                            str(current_humidiy) + '%' +
                 "\n Description : " +
                             str(weather_description)) 
         else: 
