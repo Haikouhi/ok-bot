@@ -127,3 +127,9 @@ For further details, click [here](https://www.geeksforgeeks.org/python-find-curr
 - activate virtual env.
 - install requirements 
 
+
+## Présentation :
+- contexte
+- demonstration
+- limitations (POC)
+- perspectives
