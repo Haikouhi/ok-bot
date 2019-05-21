@@ -225,7 +225,7 @@ class Query(): # gère toutes les req
 
         try:
             answer = horoscope[person_sign]
-        except:
+        except KeyError:
             answer = "Huuum, je ne connais pas cette personne ! "
 
         return answer

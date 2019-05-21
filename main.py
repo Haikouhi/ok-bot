@@ -26,7 +26,7 @@ continuer = True
 
 while continuer:
 
-    speak_answer(speech_key, "Dit quelquechose...")
+    speak_answer(speech_key, "Que veux-tu savoir ?")
 
     result = speech_recognizer.recognize_once()
 

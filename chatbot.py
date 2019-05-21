@@ -4,6 +4,7 @@ import argparse
 from text_to_speech import *
 import nltk
 from constantes import *
+import difflib
 
 def write_speech_key():
     parser = argparse.ArgumentParser()
@@ -24,8 +25,9 @@ def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):
     tokens = nltk.word_tokenize(speeched_voice.text)
 
     for elt in tokens:
-        if elt.capitalize() in firstname_list:
-            firstname = elt.capitalize()
+        for name in firstname_list:
+            if difflib.SequenceMatcher(None, elt.capitalize(), name).ratio() > 0.7:
+                firstname = name
         for k, v in word_dict.items():
             if elt.lower() in v:
                 list_query.append(k.lower())

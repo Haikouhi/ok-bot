@@ -1,6 +1,7 @@
 # coding: utf8
 
 import unittest
+from unittest.mock import patch
 import QueryClass
 
 class Test_query_class(unittest.TestCase):
@@ -35,8 +36,8 @@ class Test_query_class(unittest.TestCase):
         self.assertRaises(TypeError, self.query.city, 'Alice')
 
     def test_number(self):
-        self.assertEqual(self.query.number('Théo'), 'Son numéro de téléphone est 06 95 31 19 89')
-        self.assertEqual(self.query.number('Haikouhi'), 'Son numéro de téléphone est 06 58 17 58 07')
+        self.assertEqual(self.query.number('Théo'), 'Son numéro de téléphone est le 06 95 31 19 89')
+        self.assertEqual(self.query.number('Haikouhi'), 'Son numéro de téléphone est le 06 58 17 58 07')
         self.assertEqual(self.query.number(''), 'Huuum, je ne connais pas cette personne ! ')
         self.assertRaises(TypeError, self.query.number, 'Alice')
 
@@ -64,6 +65,8 @@ class Test_query_class(unittest.TestCase):
         self.assertEqual(self.query.anniversaire('Timothée'), 'Son anniversaire est le 3 Septembre')
         self.assertEqual(self.query.anniversaire(''), 'Huuum, je ne connais pas cette personne ! ')
         self.assertRaises(TypeError, self.query.anniversaire, 'Alice')
+
+
 
 
 if __name__ == '__main__':
