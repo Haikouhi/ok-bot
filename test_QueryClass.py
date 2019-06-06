@@ -1,7 +1,6 @@
 # coding: utf8
 
 import unittest
-from unittest.mock import patch
 import QueryClass
 
 class Test_query_class(unittest.TestCase):

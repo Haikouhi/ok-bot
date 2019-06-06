@@ -32,6 +32,8 @@ while continuer:
 
     if result.reason == speechsdk.ResultReason.RecognizedSpeech:
 
+        print (result.text)
+
         query = Query()
 
         firstname_list = query.firstname_list()

@@ -26,7 +26,7 @@ def get_list_query_and_firstname(speeched_voice, firstname_list, word_dict):
 
     for elt in tokens:
         for name in firstname_list:
-            if difflib.SequenceMatcher(None, elt.capitalize(), name).ratio() > 0.7:
+            if difflib.SequenceMatcher(None, elt.capitalize(), name).ratio() > 0.8:
                 firstname = name
         for k, v in word_dict.items():
             if elt.lower() in v:

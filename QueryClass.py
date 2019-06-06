@@ -266,7 +266,7 @@ class Query(): # gère toutes les req
             weather_description = z[0]["description"] 
 
             return(" Température : " +
-                            str(current_temperature - 273.15) + " degré"
+                            str(round(current_temperature - 273.15, 1)) + " degré"
                 "\n Pression atmosphérique : " +
                             str(current_pressure) + ' hPa' +
                 "\n Humidité : " +
