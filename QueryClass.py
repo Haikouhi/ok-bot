@@ -235,17 +235,10 @@ class Query(): # gère toutes les req
         with open("key.txt", "r") as file:
             api_key = file.readline()[:-1]
 
-        speak_answer(speech_key, "De quelle ville voulez vous connaitre la météo ?")
-
 
         base_url = "http://api.openweathermap.org/data/2.5/weather?"
 
-        city_name = ""
-        result = speech_recognizer.recognize_once()
-
-        if result.reason == speechsdk.ResultReason.RecognizedSpeech:
-            city_name = result.text
-            city_name = city_name[:-1]
+        city_name = "Lyon"
  
         complete_url = base_url + "appid=" + api_key + "&q=" + city_name.capitalize() + "&lang=fr"
 
