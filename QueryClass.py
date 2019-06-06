@@ -219,7 +219,7 @@ class Query(): # gère toutes les req
         horoscope = {}
 
         for i in range(len(signe)):
-            horoscope[signe[i].string.replace("Horoscope ", "")] = p[i * 2].string + p[i * 2 + 1].string
+            horoscope[signe[i].string.replace("Horoscope ", "")] = p[i * 2].string + ' ' + p[i * 2 + 1].string
 
         person_sign = self.zodiac_sign(firstname).split(' ')[3]
 

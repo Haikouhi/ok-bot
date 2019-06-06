@@ -40,7 +40,7 @@ def make_queries(query, list_query, firstname):
 
     if len(list_query) == 0:  # si liste des Query = 0...
 
-        answer += "Je n'ai pas compris ce que vous vouliez"
+        answer += "Je n'ai pas compris ce que tu voulais"
     else:
 
         for elt in list_query:
@@ -63,7 +63,7 @@ def make_queries(query, list_query, firstname):
             elif elt == "signe":
                 answer += query.zodiac_sign(firstname) + '\n'
             elif elt == "bye":
-                answer += "See you soon loser!"
+                answer += "A bientôt !"
             elif elt == "salut":
                 answer += "Bonjour ! Je suis Alfred" + '\n'
             elif elt == "ça_va":
